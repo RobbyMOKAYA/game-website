@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials - TuCHEZEE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #121517, #192328);
+      color: #c4b811;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #1b1e20, #2980b9);
+      color: #fff;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+    .navbar ul li a:hover {
+      color: #d0e9ff;
+    }
+    .container {
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .video-upload {
+      text-align: center;
+      padding: 20px;
+      background: black;
+      border-radius: 10px;
+      box-shadow: goldenrod;
+      margin-bottom: 30px;
+    }
+    .video-upload input {
+      margin-top: 10px;
+    }
+    .video-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .video-card {
+      background: black;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(172, 166, 7, 0.637);
+      overflow: hidden;
+      width: 320px;
+      transition: transform 0.3s;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .video-card video {
+      width: 100%;
+    }
+    .delete-btn {
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+    .delete-btn:hover {
+      background: #c0392b;
+    }
+    card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .card h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card ul li {
+            margin: 10px 0;
+        }
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+    footer {
+      background: linear-gradient(90deg, #262b2e, #2e5c7b);
+      color: #fff;
+      padding: 25px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Thee Gaming Lords</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="tutorials.html">Tutorials</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contacts.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <h1>Game Tutorials</h1>
+
+      <h2>Featured Tutorials</h2>
+      <p>Check out some of our featured tutorials:</p>
+      <ul>
+        
+    <div class="card">
+          <li><a href="20241108_123539.mp4" target="_blank">Tutorial 1 - FIFA 23 tutorial (PC)</a></li>
+      </ul>
+  </div>
+</div>
+
+    <div class="video-upload">
+      <h3>Upload Your Tutorial</h3>
+      <p>Have the ability to upload and recommend your tutorial video and view some of our featured tutorials.</p>
+      <input type="file" id="videoInput" accept="video/*">
+      <button class="btn" onclick="uploadVideo()">Upload</button>
+    </div>
+    
+    <h2>Uploaded Tutorials</h2>
+    <div class="video-list" id="videoList">
+      <!-- Videos will be displayed here dynamically -->
+    </div>
+  </div>
+
+
+  
+  <footer>
+    <p>&copy; 2025 TuCHEZEE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function uploadVideo() {
+      const videoInput = document.getElementById('videoInput');
+      const videoList = document.getElementById('videoList');
+      
+      if (videoInput.files.length > 0) {
+        const file = videoInput.files[0];
+        const videoURL = URL.createObjectURL(file);
+        
+        const videoCard = document.createElement('div');
+        videoCard.className = 'video-card';
+        
+        const video = document.createElement('video');
+        video.controls = true;
+        video.src = videoURL;
+        
+        const title = document.createElement('p');
+        title.textContent = file.name;
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = function () {
+          videoCard.remove();
+        };
+        
+        videoCard.appendChild(video);
+        videoCard.appendChild(title);
+        videoCard.appendChild(deleteBtn);
+        videoList.appendChild(videoCard);
+      }
+    }
+  </script>
+</body>
+</html>

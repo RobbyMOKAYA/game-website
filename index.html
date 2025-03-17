@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuCHEZEE</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #11191f, #020303);
+      color: #b4a809;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #0e1010, #4d9ace);
+      color:goldenrod;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .navbar .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar ul li {
+      margin: 0 15px;
+    }
+  
+    .navbar ul li a {
+      color: #fff;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    .navbar ul li a:hover {
+      color: #d0e9ff;
+    }
+    /* Main Content */
+    .container {
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .logo-img {
+  height: 50px; 
+  width: auto;
+  background: none; 
+  border: none; 
+  display: block; 
+}
+
+
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+    .card {
+      background-color: black;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(197, 173, 14, 0.772);
+      width: 300px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(182, 171, 13, 0.518);
+    }
+    .card img {
+      width: 100%;
+      display: block;
+    }
+    .card-content {
+      padding: 15px;
+    }
+    .card-content h3 {
+      margin: 10px 0;
+      font-size: 20px;
+      color: goldenrod;
+    }
+    .rating {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    .rating i {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    /* Rating Form */
+    .rate-game {
+      margin-top: 15px;
+    }
+    .rate-game label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    .rate-game input[type="range"] {
+      width: 100%;
+    }
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #0e0f10, #5497c4);
+      color: #fff;
+      padding: 25px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer p {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    footer .social-icons a {
+      margin: 0 10px;
+      color: #fff;
+      font-size: 22px;
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #d0e9ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="images.png" alt="Thee Gaming Lords " class="logo-img">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="tutorials.html">Tutorials</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contacts.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>★☆★ TuCHEZEE ★☆★</h1>
+    <p style="text-align:center;">Have a thrilling experiece of our top rated PC and PPSSPP games</p>
+    <div class="cards">
+      <!-- Game Card 1 -->
+      <div class="card">
+        <img src="HD-wallpaper-fifa-fifa-23-thumbnail.jpg" alt="Game Thumbnail" />
+        <div class="card-content">
+          <h3>FIFA 23</h3>
+          <div class="rating" data-game="1">
+            <i class="fa fa-star" data-rating="1"></i>
+            <i class="fa fa-star" data-rating="2"></i>
+            <i class="fa fa-star" data-rating="3"></i>
+            <i class="fa fa-star" data-rating="4"></i>
+            <i class="fa fa-star" data-rating="5"></i>
+          </div>
+          <div class="rate-game">
+            <label for="game1-rating">Rate this game:</label>
+            <input type="range" id="game1-rating" name="game1-rating" min="1" max="5" value="3" oninput="updateRating(this)" />
+            <span id="game1-rating-value">3</span>/5
+          </div>
+        </div>
+      </div>
+      <!-- Game Card 2 -->
+      <div class="card">
+        <img src="sddefault.jpg" alt="Game Thumbnail" />
+        <div class="card-content">
+          <h3>NFS PAYBACK</h3>
+          <div class="rating" data-game="2">
+            <i class="fa fa-star" data-rating="1"></i>
+            <i class="fa fa-star" data-rating="2"></i>
+            <i class="fa fa-star" data-rating="3"></i>
+            <i class="fa fa-star" data-rating="4"></i>
+            <i class="fa fa-star" data-rating="5"></i>
+          </div>
+          <div class="rate-game">
+            <label for="game2-rating">Rate this game:</label>
+            <input type="range" id="game2-rating" name="game2-rating" min="1" max="5" value="4" oninput="updateRating(this)" />
+            <span id="game2-rating-value">4</span>/5
+          </div>
+        </div>
+      </div>
+      <!-- Additional game cards can be added similarly -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 TuCHEZEE. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+
+
+  <script>
+    // Updates the range slider display value
+    function updateRating(slider) {
+      var ratingValue = slider.value;
+      document.getElementById(slider.id + "-value").innerText = ratingValue;
+    }
+
+    // Make stars clickable to update the rating slider value
+    document.querySelectorAll(".rating i").forEach(function (star) {
+      star.addEventListener("click", function () {
+        var rating = this.getAttribute("data-rating");
+        var ratingContainer = this.parentNode;
+        var gameId = ratingContainer.getAttribute("data-game");
+        var slider = document.getElementById("game" + gameId + "-rating");
+        slider.value = rating;
+        document.getElementById("game" + gameId + "-rating-value").innerText = rating;
+        updateStars(ratingContainer, rating);
+      });
+    });
+
+    // Function to update star colors based on the rating
+    function updateStars(container, rating) {
+      container.querySelectorAll("i").forEach(function (star) {
+        if (star.getAttribute("data-rating") <= rating) {
+          star.style.color = "#f1c40f";
+        } else {
+          star.style.color = "#ccc";
+        }
+      });
+    }
+
+    // Initialize star colors based on initial slider values
+    document.querySelectorAll(".card").forEach(function (card) {
+      var gameId = card.querySelector(".rating").getAttribute("data-game");
+      var slider = document.getElementById("game" + gameId + "-rating");
+      var rating = slider.value;
+      updateStars(card.querySelector(".rating"), rating);
+    });
+    function toggleWishlist(button, gameName, thumbnail, description, downloadUrl) {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        let gameIndex = wishlist.findIndex(game => game.name === gameName);
+
+        if (gameIndex === -1) {
+            // Add to wishlist
+            wishlist.push({ name: gameName, thumbnail, description, downloadUrl });
+            button.textContent = "Remove from Wishlist";
+        } else {
+            // Remove from wishlist
+            wishlist.splice(gameIndex, 1);
+            button.textContent = "Add to Wishlist";
+        }
+
+        // Save back to localStorage
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        updateWishlistCount();
+    }
+
+    function updateWishlistCount() {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        document.getElementById("wishlist-count").textContent = wishlist.length;
+    }
+
+    // Update wishlist count when page loads
+    document.addEventListener("DOMContentLoaded", updateWishlistCount);
+  </script>
+</body>
+</html>

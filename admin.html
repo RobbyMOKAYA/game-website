@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - TuCHEZEE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #121517;
+      color: #fff;
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background: #192328;
+      padding: 20px;
+      position: fixed;
+      height: 100%;
+    }
+    .sidebar h2 {
+      text-align: center;
+      color: goldenrod;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      padding: 10px;
+      cursor: pointer;
+    }
+    .sidebar ul li:hover {
+      background: #2980b9;
+    }
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+    .card {
+      background: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(172, 166, 7, 0.637);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    canvas {
+      background: black;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <ul>
+      <li onclick="showSection('analytics')">Analytics</li>
+      <li onclick="showSection('messages')">Client Messages</li>
+      <li onclick="showSection('reviews')">Reviews</li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div id="analytics">
+      <h2>Site Analytics</h2>
+      <div class="card">
+        <h3>Downloads</h3>
+        <p id="downloadsCount">0</p>
+      </div>
+      <div class="card">
+        <h3>Site Visits</h3>
+        <p id="visitsCount">0</p>
+      </div>
+      <div class="card">
+        <h3>Videos Watched</h3>
+        <p id="videosCount">0</p>
+      </div>
+      <canvas id="chart"></canvas>
+    </div>
+
+    <div id="messages" style="display:none;">
+      <h2>Client Messages</h2>
+      <div id="messagesList"></div>
+    </div>
+
+    <div id="reviews" style="display:none;">
+      <h2>Client Reviews</h2>
+      <div id="reviewsList"></div>
+    </div>
+  </div>
+
+  <script>
+    const ws = new WebSocket('ws://localhost:8080');
+    ws.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      if (data.type === 'analytics') {
+        document.getElementById('downloadsCount').textContent = data.downloads;
+        document.getElementById('visitsCount').textContent = data.visits;
+        document.getElementById('videosCount').textContent = data.videos;
+      } else if (data.type === 'message') {
+        const msgDiv = document.createElement('div');
+        msgDiv.textContent = data.message;
+        document.getElementById('messagesList').appendChild(msgDiv);
+      } else if (data.type === 'review') {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.textContent = data.review;
+        document.getElementById('reviewsList').appendChild(reviewDiv);
+      }
+    };
+
+    function showSection(section) {
+      document.getElementById('analytics').style.display = 'none';
+      document.getElementById('messages').style.display = 'none';
+      document.getElementById('reviews').style.display = 'none';
+      document.getElementById(section).style.display = 'block';
+    }
+
+    const ctx = document.getElementById('chart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Downloads', 'Site Visits', 'Videos Watched'],
+        datasets: [{
+          label: 'Statistics',
+          data: [0, 0, 0],
+          backgroundColor: ['red', 'blue', 'green']
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
