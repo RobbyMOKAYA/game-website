@@ -54,6 +54,13 @@
       justify-content: center;
       margin: 20px 0;
     }
+    .searrch-box {
+      padding: 10px;
+      border: 1px solid #2980b9;
+      border-radius: 5px;
+      width: 300px;
+      font-size: 16px;
+    }
     .search-box {
       padding: 10px;
       border: 1px solid #2980b9;
@@ -117,6 +124,31 @@
     .btn:hover {
       background-color: gold;
     }
+    #searchResults {
+  margin-top: 20px;
+  padding: 10px;
+  background: #1a1a1a;
+  border-radius: 5px;
+  max-width: 600px;
+}
+
+.search-result {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #2c2f33;
+  border-radius: 5px;
+}
+
+.search-result a {
+  color: #d0e9ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.search-result a:hover {
+  color: gold;
+}
+
     /* Footer */
     footer {
       background: linear-gradient(90deg, #262b2e, #2e5c7b);
@@ -151,13 +183,24 @@
   </nav>
 
   <!-- Search Bar -->
-  <div class="search-container">
-    <input type="text" id="searchBox" class="search-box" placeholder="Search games..." onkeyup="searchGames()">
+  <div class="searrch-container">
+    <input type="text" id="searrchBox" class="searrch-box" placeholder="Search games here..." onkeyup="searrchGamess()">
   </div>
+
+  <!-- Search Bar -->
+<div class="search-container">
+  <input type="text" id="searchBox" class="search-box" placeholder="search more across the web..." />
+  <button class="btn" onclick="searchGames()">Search</button>
+</div>
+<!-- Search Results -->
+<div id="searchResults"></div>
+
+
+
 
   <!-- Main Content -->
   <div class="container">
-    <h1>⭐🎮 Download and Explore Our Games 🎮⭐</h1>
+    <h1>⭐🎮 Have a look and download some our our featured Games 🎮⭐</h1>
     
     <div class="cards" id="gameCards">
       <div class="card" data-title="FIFA 23">
@@ -473,7 +516,7 @@
     let gameCard = button.closest(".card"); // Find the game card
     let thumbnail = gameCard.querySelector("img").src; // Get thumbnail URL
     let description = gameCard.querySelector("p").innerText; // Get game description
-    let downloadUrl = "#"; // Replace this with the actual download link if needed
+    let downloadUrl = "https://www.pirateproxy-bay.com/"; // Replace this with the actual download link if needed
 
     let game = { name: gameName, thumbnail: thumbnail, description: description, downloadUrl: downloadUrl };
 
@@ -507,8 +550,8 @@ function downloadGame(gameFile) {
   document.body.removeChild(link);
   alert('Your download has started!');
 }
-    function searchGames() {
-      let input = document.getElementById("searchBox").value.toLowerCase();
+    function searrchGamess() {
+      let input = document.getElementById("searrchBox").value.toLowerCase();
       let cards = document.querySelectorAll(".card");
       
       cards.forEach(card => {
@@ -520,6 +563,42 @@ function downloadGame(gameFile) {
         }
       });
     }
+    function searchGames() {
+    let query = document.getElementById("searchBox").value;
+    if (query.trim() === "") return;
+
+    let apiUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&pretty=1`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        displayResults(data);
+      })
+      .catch(error => console.error("Error fetching search results:", error));
+  }
+
+  function displayResults(data) {
+    let resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    if (data.RelatedTopics.length === 0) {
+      resultsContainer.innerHTML = "<p>No results found.</p>";
+      return;
+    }
+
+    data.RelatedTopics.forEach((result) => {
+      if (result.Text && result.FirstURL) {
+        let resultItem = document.createElement("div");
+        resultItem.classList.add("search-result");
+        resultItem.innerHTML = `
+          <a href="${result.FirstURL}" target="_blank">
+            <p>${result.Text}</p>
+          </a>
+        `;
+        resultsContainer.appendChild(resultItem);
+      }
+    });
+  }
   </script>
 </body>
 </html>
