@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TuCHEZEE</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     /* Global Styles */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: linear-gradient(to bottom, #121517, #192328);
-      color:rgba(144, 199, 209, 0.603);
+      background: linear-gradient(to bottom, #11191f, #020303);
+      color: #b4a809;
     }
     a {
       text-decoration: none;
@@ -19,83 +20,119 @@
     }
     /* Navbar */
     .navbar {
-      background: linear-gradient(90deg, #1b1e20, #2980b9);
-      color: #d3a310e1;
-      padding: 15px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-    .navbar .logo {
-      font-size: 26px;
-      font-weight: bold;
-    }
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-    }
-    .navbar ul li {
-      margin: 0 15px;
-    }
-    .navbar ul li a {
-      color: #d2e6ecdc;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-    .navbar ul li a:hover {
-      color: #d0e9ff;
-    }
-    /* Search Bar */
-    .search-container {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .searrch-box {
-      padding: 10px;
-      border: 1px solid #2980b9;
-      border-radius: 5px;
-      width: 300px;
-      font-size: 16px;
-    }
-    .search-box {
-      padding: 10px;
-      border: 1px solid #2980b9;
-      border-radius: 5px;
-      width: 300px;
-      font-size: 16px;
-    }
+  background: linear-gradient(90deg, #0e1010, #4d9ace);
+  color: goldenrod;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar .logo-img {
+  height: 45px;
+  border-radius: 50%;
+  transition: transform 0.6s;
+}
+.logo-img:hover {
+  transform: rotate(360deg);
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+.navbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 10px;
+}
+
+.navbar-links a {
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #d0e9ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: #0e1010;
+    padding: 10px 0;
+    margin-top: 10px;
+  }
+
+  .navbar-links.show {
+    display: flex;
+  }
+
+  .navbar-links li {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
     /* Main Content */
     .container {
       padding: 30px 20px;
       max-width: 1200px;
       margin: auto;
     }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-      justify-content: center;
-    }
-    .card {
-      background-color: #000000;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(201, 175, 7, 0.767);
-      width: 300px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+    .logo-img {
+  height: 50px; 
+  width: auto;
+  background: none; 
+  border: none; 
+  display: block; 
+}
+
+
+
+    .container h1 {
       text-align: center;
+      margin-bottom: 20px;
+      padding: 30px 15px;
     }
+    .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 300px;
+}
+
+
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(194, 165, 19, 0.3);
+      box-shadow: 0 8px 16px rgba(182, 171, 13, 0.518);
     }
     .card img {
       width: 100%;
-      display: block;
+      height: auto;
     }
     .card-content {
       padding: 15px;
@@ -105,57 +142,38 @@
       font-size: 20px;
       color: goldenrod;
     }
-     /* Wishlist and Download Buttons */
-     .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
+    .rating {
+      margin: 10px 0;
+      font-size: 18px;
     }
-    .btn {
-      background-color: #2980b9;
-      color: #fff;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
+    .rating i {
+      color: #ccc;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: color 0.3s;
     }
-    .btn:hover {
-      background-color: gold;
+    /* Rating Form */
+    .rate-game {
+      margin-top: 15px;
     }
-    #searchResults {
-  margin-top: 20px;
-  padding: 10px;
-  background: #1a1a1a;
-  border-radius: 5px;
-  max-width: 600px;
-}
-
-.search-result {
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #2c2f33;
-  border-radius: 5px;
-}
-
-.search-result a {
-  color: #d0e9ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.search-result a:hover {
-  color: gold;
-}
-
+    .rate-game label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    .rate-game input[type="range"] {
+      width: 100%;
+    }
     /* Footer */
     footer {
-      background: linear-gradient(90deg, #262b2e, #2e5c7b);
+      background: linear-gradient(90deg, #0e0f10, #5497c4);
       color: #fff;
       padding: 25px 20px;
       text-align: center;
       margin-top: 40px;
+    }
+    footer p {
+      margin: 0;
+      margin-bottom: 10px;
     }
     footer .social-icons a {
       margin: 0 10px;
@@ -171,328 +189,65 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">TuCHEZEE</div>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="games.html">Games</a></li>
-        <li><a href="tutorials.html">Tutorials</a></li>
+    <div class="navbar-left">
+      <img src="images.png" alt="Thee Gaming Lords" class="logo-img" />
+    </div>
+    <button class="navbar-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="navbar-links" id="navbarLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="tutorials.html">Tutorials</a></li>
       <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="wishlist.html" onclick="showWishlist()">Wishlist (<span id="wishlist-count">0</span>)</a></li>
       <li><a href="contacts.html">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Search Bar -->
-  <div class="searrch-container">
-    <input type="text" id="searrchBox" class="searrch-box" placeholder="Search games here..." onkeyup="searrchGamess()">
-  </div>
-
-  <!-- Search Bar -->
-<div class="search-container">
-  <input type="text" id="searchBox" class="search-box" placeholder="search more across the web..." />
-  <button class="btn" onclick="searchGames()">Search</button>
-</div>
-<!-- Search Results -->
-<div id="searchResults"></div>
-
-
-
-
   <!-- Main Content -->
   <div class="container">
-    <h1>⭐🎮 Have a look and download some our our featured Games 🎮⭐</h1>
-    
-    <div class="cards" id="gameCards">
-      <div class="card" data-title="FIFA 23">
+    <h1>★☆★ TuCHEZEE ★☆★</h1>
+    <p style="text-align:center;">Have a thrilling experiece of our top rated PC and PPSSPP games</p>
+    <div class="cards">
+      <!-- Game Card 1 -->
+      <div class="card">
         <img src="HD-wallpaper-fifa-fifa-23-thumbnail.jpg" alt="Game Thumbnail" />
         <div class="card-content">
           <h3>FIFA 23</h3>
-          <p>Experience the thrill of real football with your favourite team ultimately.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'FIFA 23')">Add to Wishlist</button>
-            <a href="" download><button class="btn">Download</button></a>
+          <div class="rating" data-game="1">
+            <i class="fa fa-star" data-rating="1"></i>
+            <i class="fa fa-star" data-rating="2"></i>
+            <i class="fa fa-star" data-rating="3"></i>
+            <i class="fa fa-star" data-rating="4"></i>
+            <i class="fa fa-star" data-rating="5"></i>
+          </div>
+          <div class="rate-game">
+            <label for="game1-rating">Rate this game:</label>
+            <input type="range" id="game1-rating" name="game1-rating" min="1" max="5" value="3" oninput="updateRating(this)" />
+            <span id="game1-rating-value">3</span>/5
           </div>
         </div>
       </div>
-
-      <div class="card" data-title="NFS PAYBACK">
+      <!-- Game Card 2 -->
+      <div class="card">
         <img src="sddefault.jpg" alt="Game Thumbnail" />
         <div class="card-content">
           <h3>NFS PAYBACK</h3>
-          <p>Action-packed racing game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'NFS PAYBACK')">Add to Wishlist</button>
-            <button class="btn">Download</button>
+          <div class="rating" data-game="2">
+            <i class="fa fa-star" data-rating="1"></i>
+            <i class="fa fa-star" data-rating="2"></i>
+            <i class="fa fa-star" data-rating="3"></i>
+            <i class="fa fa-star" data-rating="4"></i>
+            <i class="fa fa-star" data-rating="5"></i>
+          </div>
+          <div class="rate-game">
+            <label for="game2-rating">Rate this game:</label>
+            <input type="range" id="game2-rating" name="game2-rating" min="1" max="5" value="4" oninput="updateRating(this)" />
+            <span id="game2-rating-value">4</span>/5
           </div>
         </div>
       </div>
-
-      <div class="card" data-title="FIFA 19">
-        <img src="fifa 19.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>FIFA 19</h3>
-          <p>Enjoy the excitement of the onset of modern football with improved featureds and skilss with the latest modest.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'FIFA 19')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="NFS Underground">
-        <img src="nfs.jpg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>NFS Underground</h3>
-          <p>Action-packed racing game with the thrill of night racing and exiting challenges and milestones that make the game even more enjoyable.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'NFS Underground')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="EAFC 24">
-        <img src="fc24.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>EAFC 24</h3>
-          <p>Enjoy realsitic real football that includes teams and players of your choice and play any competitions of your choice.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'EAFC 24')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="FAR CRY 1">
-        <img src="far cry 1.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>FAR CRY 1</h3>
-          <p>Action-packed action game with challenges and missions across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'FAR CRY 1')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="FAR CRY 2">
-        <img src="far cry 2.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>FAR CRY 2</h3>
-          <p>Action-packed action game with challenges and milestones across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'FAR CRY 2')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="FAR CRY 3">
-        <img src="far cry 3.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>FAR CRY 3</h3>
-          <p>Action-packed action game with challenges and missions across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'FAR CRY 3')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="FAR CRY NEW DAWN">
-        <img src="far cry new dawn.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>FAR CRY NEW DAWN</h3>
-          <p>Action-packed action game with challenges and missions across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'FAR CRY NEW DAWN')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="TEKKEN 6">
-        <img src="tekken.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>TEKKEN 6</h3>
-          <p>Action-packed fighting game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'TEKKEN 7')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="RED DEAD REDEMPTION">
-        <img src="red.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>RED DEAD REDEMPTION</h3>
-          <p>Action-packed arcade game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'RED DEAD REDEMPTION')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="GTA IV">
-        <img src="gta 4.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>GTA IV</h3>
-          <p>Action oriented game with lots of breathtaking missions and challenges.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'GTA IV')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="EFOOTBLL25 PPSSPP version">
-        <img src="ppsspp25.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>EFOOTBLL25 PPSSPP version</h3>
-          <p> Experience the thril of PPSSPP games with EFOOTBALL25 with is a virual alternative of a playstation in your phone</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'EFOOTBLL25 PPSSPP version')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="NFS Most wanted">
-        <img src="nfsmw.jpg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>NFS Most wanted</h3>
-          <p>Action-packed racing game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'NFS Most wanted')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="NFS Carbon">
-        <img src="carbon.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>NFS Carbon</h3>
-          <p>Action-packed racing game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'NFS Carbon')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="GTA san andreas">
-        <img src="san andreas.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>GTA san andreas</h3>
-          <p>Action-packed action game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'GTA san andreas')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="GTA vice city">
-        <img src="vice city.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>GTA vice city</h3>
-          <p>Action-packed action game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'GTA vice city')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="GTA VI">
-        <img src="gta 6.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>GTA VI</h3>
-          <p>COMING SOON...</p>
-          <div class="buttons">
-            
-          
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="GTA liberty stories">
-        <img src="liberty.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>GTA liberty stories</h3>
-          <p>Action-packed racing game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'GTA liberty stories')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="2k 24">
-        <img src="2k 24.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>2k 24</h3>
-          <p>Action-packed wrestling game with challenges and competitions across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, '2k 24')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="Euro truck 2">
-        <img src="euro.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>Euro truck 2</h3>
-          <p>Experience the thrill of virtual travelling across europe with a truck of your choice.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'Euro truck 2')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="Spider man 2">
-        <img src="spider.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>Spider man 2</h3>
-          <p>Action-packed racing game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'Spider man 2')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-title="Mortal Kombat X">
-        <img src="kombat x.jpeg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>Mortal Kombat X</h3>
-          <p>Action-packed arcade game with challenges across all levels that will excite you.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'Mortal Kombat X')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-       
-
-      <div class="card" data-title="GTA V">
-        <img src="maxresdefault.jpg" alt="Game Thumbnail" />
-        <div class="card-content">
-          <h3>GTA V</h3>
-          <p>Action oriented game with lots of breathtaking missions and challenges.</p>
-          <div class="buttons">
-            <button class="btn wishlist-btn" onclick="toggleWishlist(this, 'GTA V')">Add to Wishlist</button>
-            <button class="btn">Download</button>
-          </div>
-        </div>
-      </div>
-        </div>
-      </div>
+      <!-- Additional game cards can be added similarly -->
     </div>
   </div>
 
@@ -500,105 +255,83 @@
   <footer>
     <p>&copy; 2025 TuCHEZEE. All rights reserved.</p>
     <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
     </div>
   </footer>
 
 
   <script>
-    
-    function toggleWishlist(button, gameName) {
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    let gameCard = button.closest(".card"); // Find the game card
-    let thumbnail = gameCard.querySelector("img").src; // Get thumbnail URL
-    let description = gameCard.querySelector("p").innerText; // Get game description
-    let downloadUrl = "https://www.pirateproxy-bay.com/"; // Replace this with the actual download link if needed
-
-    let game = { name: gameName, thumbnail: thumbnail, description: description, downloadUrl: downloadUrl };
-
-    // Check if game is already in wishlist
-    let index = wishlist.findIndex(g => g.name === gameName);
-    if (index === -1) {
-        wishlist.push(game);
-        button.innerText = "Remove from Wishlist";
-    } else {
-        wishlist.splice(index, 1);
-        button.innerText = "Add to Wishlist";
+    // Updates the range slider display value
+    function updateRating(slider) {
+      var ratingValue = slider.value;
+      document.getElementById(slider.id + "-value").innerText = ratingValue;
     }
 
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-}
+    // Make stars clickable to update the rating slider value
+    document.querySelectorAll(".rating i").forEach(function (star) {
+      star.addEventListener("click", function () {
+        var rating = this.getAttribute("data-rating");
+        var ratingContainer = this.parentNode;
+        var gameId = ratingContainer.getAttribute("data-game");
+        var slider = document.getElementById("game" + gameId + "-rating");
+        slider.value = rating;
+        document.getElementById("game" + gameId + "-rating-value").innerText = rating;
+        updateStars(ratingContainer, rating);
+      });
+    });
+
+    // Function to update star colors based on the rating
+    function updateStars(container, rating) {
+      container.querySelectorAll("i").forEach(function (star) {
+        if (star.getAttribute("data-rating") <= rating) {
+          star.style.color = "#f1c40f";
+        } else {
+          star.style.color = "#ccc";
+        }
+      });
+    }
+
+    // Initialize star colors based on initial slider values
+    document.querySelectorAll(".card").forEach(function (card) {
+      var gameId = card.querySelector(".rating").getAttribute("data-game");
+      var slider = document.getElementById("game" + gameId + "-rating");
+      var rating = slider.value;
+      updateStars(card.querySelector(".rating"), rating);
+    });
+    function toggleWishlist(button, gameName, thumbnail, description, downloadUrl) {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        let gameIndex = wishlist.findIndex(game => game.name === gameName);
+
+        if (gameIndex === -1) {
+            // Add to wishlist
+            wishlist.push({ name: gameName, thumbnail, description, downloadUrl });
+            button.textContent = "Remove from Wishlist";
+        } else {
+            // Remove from wishlist
+            wishlist.splice(gameIndex, 1);
+            button.textContent = "Add to Wishlist";
+        }
+
+        // Save back to localStorage
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        updateWishlistCount();
+    }
 
     function updateWishlistCount() {
         let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
         document.getElementById("wishlist-count").textContent = wishlist.length;
     }
+    function toggleMenu() {
+  document.getElementById("navbarLinks").classList.toggle("show");
+}
+
 
     // Update wishlist count when page loads
     document.addEventListener("DOMContentLoaded", updateWishlistCount);
-
-function downloadGame(gameFile) {
-  const link = document.createElement('a');
-  link.href = gameFile;
-  link.download = gameFile.split('/').pop();
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  alert('Your download has started!');
-}
-    function searrchGamess() {
-      let input = document.getElementById("searrchBox").value.toLowerCase();
-      let cards = document.querySelectorAll(".card");
-      
-      cards.forEach(card => {
-        let title = card.getAttribute("data-title").toLowerCase();
-        if (title.includes(input)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-    function searchGames() {
-    let query = document.getElementById("searchBox").value;
-    if (query.trim() === "") return;
-
-    let apiUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&pretty=1`;
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        displayResults(data);
-      })
-      .catch(error => console.error("Error fetching search results:", error));
-  }
-
-  function displayResults(data) {
-    let resultsContainer = document.getElementById("searchResults");
-    resultsContainer.innerHTML = ""; // Clear previous results
-
-    if (data.RelatedTopics.length === 0) {
-      resultsContainer.innerHTML = "<p>No results found.</p>";
-      return;
-    }
-
-    data.RelatedTopics.forEach((result) => {
-      if (result.Text && result.FirstURL) {
-        let resultItem = document.createElement("div");
-        resultItem.classList.add("search-result");
-        resultItem.innerHTML = `
-          <a href="${result.FirstURL}" target="_blank">
-            <p>${result.Text}</p>
-          </a>
-        `;
-        resultsContainer.appendChild(resultItem);
-      }
-    });
-  }
   </script>
 </body>
 </html>
